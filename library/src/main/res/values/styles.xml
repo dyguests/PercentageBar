@@ -1,6 +1,18 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <style name="Widget_Percentage_Bar">
 
+    <style name="Widget_Percentage_Bar">
+        <!--<attr name="foregroundDrawable" format="reference"/>-->
+        <!--<attr name="barHeight" format="dimension"/>-->
+        <!--<attr name="textSize" format="dimension"/>-->
+        <!--<attr name="textColor" format="color"/>-->
+        <!--<attr name="textPadding" format="dimension"/>-->
+        <!--<attr name="percentage" format="float"/>-->
+        <item name="foregroundDrawable">@drawable/img_percentage_bar_foreground_default</item>
+        <item name="barHeight">@dimen/percentage_bar_height_default</item>
+        <item name="textSize">@dimen/percentage_text_size_default</item>
+        <item name="textColor">@color/percentage_text_color_default</item>
+        <item name="textPadding">@dimen/percentage_text_padidng_default</item>
+        <item name="percentage">.5</item>
     </style>
 </resources>
