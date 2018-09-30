@@ -2,7 +2,6 @@ package com.fanhl.percentagebar
 
 import android.content.Context
 import android.graphics.Canvas
-import android.graphics.Color
 import android.graphics.Rect
 import android.graphics.drawable.Drawable
 import android.support.v4.content.ContextCompat
@@ -24,7 +23,7 @@ class PercentageBar @JvmOverloads constructor(
 ) : View(context, attrs, defStyleAttr) {
 
     private var textPaint = TextPaint().apply {
-        color = Color.WHITE
+        isAntiAlias = true
     }
 
     private var foregroundDrawable: Drawable? = null
