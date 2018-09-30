@@ -2,6 +2,7 @@
 <resources>
     <declare-styleable name="PercentageBar">
         <attr name="foregroundDrawable" format="reference"/>
-        <attr name="text" format="string"/>
+        <attr name="percentage" format="float"/>
+        <attr name="textSize" format="dimension"/>
     </declare-styleable>
 </resources>

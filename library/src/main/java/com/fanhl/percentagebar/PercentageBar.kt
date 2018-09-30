@@ -5,6 +5,7 @@ import android.graphics.Canvas
 import android.graphics.Color
 import android.graphics.drawable.Drawable
 import android.support.v4.content.ContextCompat
+import android.text.TextPaint
 import android.util.AttributeSet
 import android.view.View
 
@@ -19,9 +20,13 @@ class PercentageBar @JvmOverloads constructor(
     defStyleAttr: Int = 0
 ) : View(context, attrs, defStyleAttr) {
 
+    private var textPaint = TextPaint().apply {
+        color = Color.WHITE
+    }
+
     private var foregroundDrawable: Drawable? = null
 
-    var percent: Float = 0f
+    var percentage: Float = 0f
 
     init {
 
@@ -29,9 +34,13 @@ class PercentageBar @JvmOverloads constructor(
 
         foregroundDrawable = a.getDrawable(R.styleable.PercentageBar_foregroundDrawable) ?: ContextCompat.getDrawable(context, R.drawable.img_percentage_bar_foreground_default)
 
-        percent = .5f // FIXME: 2018/9/30 fanhl
+        percentage = a.getFloat(R.styleable.PercentageBar_percentage, .5f)
+        val textSize = a.getDimension(R.styleable.PercentageBar_textSize, context.resources.getDimension(R.dimen.percentage_text_size_default))
 
         a.recycle()
+
+
+        textPaint.textSize = textSize
     }
 
     override fun onDraw(canvas: Canvas?) {
@@ -55,10 +64,13 @@ class PercentageBar @JvmOverloads constructor(
             setBounds(
                 0,
                 0,
-                (validWidth * percent).toInt(),
+                (validWidth * percentage).toInt(),
                 validHeight
             )
             draw(canvas)
         }
+        canvas.drawText(createHintText(), (validWidth * percentage), validHeight / 2f, textPaint)
     }
+
+    private fun createHintText() = NumberUtil.perc(percentage)
 }
