@@ -69,8 +69,8 @@ class PercentageBar @JvmOverloads constructor(
             )
             draw(canvas)
         }
-        canvas.drawText(createHintText(), (validWidth * percentage), validHeight / 2f, textPaint)
+        canvas.drawText(createTextHint(), (validWidth * percentage), validHeight / 2f, textPaint)
     }
 
-    private fun createHintText() = NumberUtil.perc(percentage)
+    private fun createTextHint() = NumberUtil.perc(percentage)
 }
