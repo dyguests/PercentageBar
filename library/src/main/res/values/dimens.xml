@@ -1,4 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <dimen name="percentage_text_size_default">12sp</dimen>
+    <dimen name="percentage_text_padidng_default">6dp</dimen>
+    <dimen name="percentage_bar_height_default">12dp</dimen>
 </resources>
