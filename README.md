@@ -32,6 +32,7 @@ styleable:
         <attr name="foregroundDrawable" format="reference"/>
         <attr name="barHeight" format="dimension"/>
         <attr name="textSize" format="dimension"/>
+        <attr name="textColor" format="color"/>
         <attr name="textPadding" format="dimension"/>
         <attr name="percentage" format="float"/>
     </declare-styleable>

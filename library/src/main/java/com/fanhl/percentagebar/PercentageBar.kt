@@ -6,6 +6,7 @@ import android.graphics.Color
 import android.graphics.Rect
 import android.graphics.drawable.Drawable
 import android.support.v4.content.ContextCompat
+import android.support.v4.math.MathUtils
 import android.text.TextPaint
 import android.util.AttributeSet
 import android.view.View
@@ -54,6 +55,19 @@ class PercentageBar @JvmOverloads constructor(
             requestLayout()
         }
 
+    /**
+     * 这是用来自定义提示文字
+     */
+    var textHintProvider: TextHintProvider? = null
+        set(value) {
+            if (field == value) {
+                return
+            }
+            field = value
+            requestLayout()
+        }
+    private var defaultTextHintProvider = DefaultTextHintProvider()
+
     /** 文字垂直居中的偏移值 */
     private var textCenterYOffset: Float = 0f
 
@@ -81,7 +95,7 @@ class PercentageBar @JvmOverloads constructor(
 
         textPadding = a.getDimension(R.styleable.PercentageBar_textPadding, context.resources.getDimension(R.dimen.percentage_text_padidng_default))
 
-        percentage = a.getFloat(R.styleable.PercentageBar_percentage, .5f)
+        percentage = a.getFloat(R.styleable.PercentageBar_percentage, .5f).let { MathUtils.clamp(it, 0f, 1f) }
 
         a.recycle()
 
@@ -165,5 +179,15 @@ class PercentageBar @JvmOverloads constructor(
         canvas.drawText(createTextHint(), barWidthPercent + textPadding, validHeight / 2f + textCenterYOffset, textPaint)
     }
 
-    private fun createTextHint() = NumberUtil.perc(percentage)
+    private fun createTextHint() = (textHintProvider ?: defaultTextHintProvider).createTextHint(percentage)
+
+    interface TextHintProvider {
+        fun createTextHint(percentage: Float): String
+    }
+
+    class DefaultTextHintProvider : TextHintProvider {
+        override fun createTextHint(percentage: Float): String {
+            return NumberUtil.perc(percentage)
+        }
+    }
 }
