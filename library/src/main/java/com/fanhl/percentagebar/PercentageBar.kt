@@ -26,7 +26,7 @@ class PercentageBar @JvmOverloads constructor(
         isAntiAlias = true
     }
 
-    private var foregroundDrawable: Drawable? = null
+    var foregroundDrawable: Drawable? = null
         set(value) {
             if (field == value) {
                 return
@@ -35,7 +35,7 @@ class PercentageBar @JvmOverloads constructor(
             requestLayout()
         }
 
-    private var barHeight: Float = 0f
+    var barHeight: Float = 0f
         set(value) {
             if (field == value) {
                 return
@@ -45,7 +45,7 @@ class PercentageBar @JvmOverloads constructor(
         }
 
     /** 提示文字与百分比条的间距 */
-    private var textPadding: Float = 0f
+    var textPadding: Float = 0f
         set(value) {
             if (field == value) {
                 return
