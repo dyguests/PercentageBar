@@ -13,7 +13,7 @@ class MainActivity : AppCompatActivity() {
         setContentView(R.layout.activity_main)
 
         root.apply {
-            (getChildAt(childCount - 1) as PercentageBar).textHintProvider = object : PercentageBar.TextHintProvider {
+            (getChildAt(childCount - 1) as? PercentageBar)?.textHintProvider = object : PercentageBar.TextHintProvider {
                 override fun createTextHint(percentage: Float): String {
                     return "Custom textHint ---$percentage---"
                 }
@@ -25,8 +25,8 @@ class MainActivity : AppCompatActivity() {
     private fun initData() {
         val random = Random()
         root.apply {
-            (0 until childCount).map { getChildAt(it) as PercentageBar }.forEach {
-                it.percentage = random.nextFloat()
+            (0 until childCount).map { getChildAt(it) as? PercentageBar }.forEach {
+                it?.percentage = random.nextFloat()
             }
         }
     }

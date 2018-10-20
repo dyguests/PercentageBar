@@ -32,6 +32,17 @@
         android:layout_marginStart="16dp"
         android:layout_marginTop="16dp"
         android:layout_marginEnd="16dp"
+        app:foregroundDrawable="@drawable/img_no_radius"
+        app:textColor="#0f0"
+        app:textSize="30sp"/>
+
+    <com.fanhl.percentagebar.PercentageBar
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="16dp"
+        app:foregroundDrawable="@drawable/img_radius"
         app:textColor="#0f0"
         app:textSize="30sp"/>
 
@@ -69,6 +80,43 @@
         android:layout_marginEnd="16dp"
         app:barHeight="60dp"
         app:foregroundDrawable="@mipmap/ic_launcher"/>
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="16dp"
+        android:background="#000"
+        android:orientation="vertical">
+
+        <com.fanhl.percentagebar.PercentageBar
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingRight="1dp"
+            app:percentage="1"
+            app:textColor="@color/colorAccent"/>
+
+        <com.fanhl.percentagebar.PercentageBar
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            app:percentage="1"
+            app:textColor="@color/colorAccent"/>
+
+        <com.fanhl.percentagebar.PercentageBar
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16px"
+            app:percentage="1"
+            app:textColor="@color/colorAccent"/>
+
+        <com.fanhl.percentagebar.PercentageBar
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16.4dp"
+            app:percentage="1"
+            app:textColor="@color/colorAccent"/>
+    </LinearLayout>
 
     <com.fanhl.percentagebar.PercentageBar
         android:layout_width="match_parent"

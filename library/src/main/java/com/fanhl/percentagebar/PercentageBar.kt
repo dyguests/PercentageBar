@@ -45,7 +45,7 @@ class PercentageBar @JvmOverloads constructor(
         }
 
     /** 提示文字与百分比条的间距 */
-    var textPadding: Float = 0f
+    var textPadding: Int = 0
         set(value) {
             if (field == value) {
                 return
@@ -92,7 +92,7 @@ class PercentageBar @JvmOverloads constructor(
         val textSize = a.getDimension(R.styleable.PercentageBar_textSize, context.resources.getDimension(R.dimen.percentage_text_size_default))
         val textColor = a.getColor(R.styleable.PercentageBar_textColor, ContextCompat.getColor(context, R.color.percentage_text_color_default))
 
-        textPadding = a.getDimension(R.styleable.PercentageBar_textPadding, context.resources.getDimension(R.dimen.percentage_text_padidng_default))
+        textPadding = a.getDimensionPixelOffset(R.styleable.PercentageBar_textPadding, context.resources.getDimensionPixelOffset(R.dimen.percentage_text_padidng_default))
 
         percentage = a.getFloat(R.styleable.PercentageBar_percentage, .5f).let { MathUtils.clamp(it, 0f, 1f) }
 
@@ -163,19 +163,22 @@ class PercentageBar @JvmOverloads constructor(
     }
 
     private fun drawValid(canvas: Canvas, validWidth: Int, validHeight: Int) {
+        val textHint = createTextHint()
+        textPaint.getTextBounds(textHint, 0, textHint.length, textBounds)
+
         val barWidthTotal = validWidth - textBounds.width() - textPadding
-        val barWidthPercent = barWidthTotal * percentage
+        val barWidthPercent = (barWidthTotal * percentage).toInt()
 
         foregroundDrawable?.apply {
             setBounds(
                 0,
                 (validHeight / 2f - barHeight / 2f).roundToInt(),
-                barWidthPercent.roundToInt(),
+                barWidthPercent.toInt(),
                 (validHeight / 2f + barHeight / 2f).roundToInt()
             )
             draw(canvas)
         }
-        canvas.drawText(createTextHint(), barWidthPercent + textPadding, validHeight / 2f + textCenterYOffset, textPaint)
+        canvas.drawText(textHint, (barWidthPercent + textPadding).toFloat(), validHeight / 2f + textCenterYOffset, textPaint)
     }
 
     private fun createTextHint() = (textHintProvider ?: defaultTextHintProvider).createTextHint(percentage)
